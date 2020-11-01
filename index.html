@@ -1,0 +1,1454 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title></title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="./CSS/jquery.fs.zoomer.css" media="all" rel="stylesheet" type="text/css" />
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+    type="text/css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://scripts.sirv.com/sirv.js"></script>
+  <script type="text/javascript" src="./JS/jquery.lazy.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Raleway|Roboto&amp;display=swap" rel="stylesheet" />
+  <style type="text/css">
+    @media(max-width: 525px) {
+      .img-show {
+        max-width: 70% !important;
+      }
+    }
+
+    body {
+      overflow-x: hidden;
+      font-family: 'Roboto', sans-serif;
+      font-family: 'Raleway', sans-serif;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
+    /* header{
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    box-shadow: 0 2px 5px rgba(0,0,0,.2);
+  }
+  nav{
+    width: 100%;
+  }
+  nav ul{
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+  nav ul li{
+    list-style: none;
+    display: block;
+    margin: 10px 0;
+    padding: 10px 20px;
+    color: #262626;
+    cursor: pointer;
+  }*/
+    #port-menu .portfolio-nav li {
+      float: left;
+      color: #3f444a;
+      padding: 0 30px 20px 30px;
+    }
+
+    .portfolio-nav {
+      padding-left: 0;
+      list-style: none;
+      width: 100%;
+      justify-content: center;
+      display: inline-flex;
+      margin-top: 0;
+      position: fixed;
+      font-size: 21px;
+      padding-top: 20px;
+      z-index: 11522;
+      background: #fff;
+      box-shadow: 2px 6px 10px #f2f2f2;
+    }
+
+    #port-menu .portfolio-nav li:hover {
+      color: #113685;
+      cursor: pointer;
+    }
+
+    .portfolio {
+      display: inline-block;
+      margin-top: 120px;
+      margin-left: 0px;
+      position: relative;
+      width: 100%;
+    }
+
+    .portfolio .portfolio-col2 {
+      float: left;
+      position: relative !important;
+      left: inherit !important;
+      top: inherit !important;
+      margin: 0 0 .2% .2%;
+      z-index: 1;
+      width: 24.8%;
+    }
+
+    .portfolio-col2 img {
+      width: 100%;
+    }
+
+    .portfolio-col2:hover .overlay {
+      display: block;
+      position: absolute;
+      background-color: black;
+      opacity: 0.6;
+      width: 100%;
+      height: 99%;
+      cursor: pointer;
+    }
+
+    .overlay {
+      display: none;
+    }
+
+    #tab_container div.active {
+      display: block !important;
+    }
+
+    #tab-wordpress {
+      display: none;
+      position: static;
+      visibility: visible;
+    }
+
+    .portfolio-nav li.active {
+      color: #113685 !important;
+      font-weight: bold;
+      border-bottom: 3px solid #113685;
+      padding-bottom: 30px;
+    }
+
+    div#tab_container>div {
+      display: none;
+    }
+
+    .popup-overlay.active {
+      visibility: visible;
+      text-align: center;
+    }
+
+    .overlay2 {
+      background-color: #000;
+      width: 100%;
+      height: auto;
+      opacity: 0.6;
+      z-index: 1111;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+    }
+
+    .overlay2 {
+      visibility: hidden;
+    }
+
+    .overlay2.active {
+      visibility: visible;
+    }
+
+    .popup-overlay {
+      background-color: #000;
+      width: 1200px;
+      margin-top: 200px;
+      display: flex;
+      visibility: hidden;
+      position: fixed;
+      left: 50%;
+      margin-left: -600px;
+      z-index: 2222;
+    }
+
+    .close {
+      text-align: center;
+      width: 31px;
+      height: 31px;
+      border-radius: 25px;
+      background-color: #113685;
+      border: 2px solid #fff;
+      position: absolute;
+      top: -12px;
+      cursor: pointer;
+      right: -12px;
+      color: white;
+      font-size: medium;
+    }
+
+    .main {
+      cursor: grab;
+      cursor: -o-grab;
+      cursor: -moz-grab;
+      cursor: -webkit-grab;
+    }
+
+    .zoomer_wrapper {
+      height: 550px;
+      overflow: hidden;
+      width: 1200px;
+      float: left;
+    }
+
+    .popup-content {
+      width: 100%;
+    }
+
+    .zoomer {
+      background: #000;
+      height: 100%;
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+      transition: none;
+      display: flex;
+    }
+
+    .zoomer .zoomer-positioner {
+      margin: 0;
+      position: absolute;
+    }
+
+    .zoomer .zoomer-holder {
+      position: relative;
+      transition: none;
+      display: flex;
+    }
+
+    .zoomer-image {
+      cursor: move;
+      float: left;
+      height: 100%;
+      width: 100%;
+    }
+
+    .viewer {
+      height: 550px;
+      width: 806px;
+      margin-left: 25px;
+      margin-top: auto;
+      margin-bottom: auto;
+      margin-right: 25px;
+    }
+
+    .icon {
+      display: none;
+    }
+
+    @media(max-width: 1440px) {
+      .popup-overlay {
+        margin-top: 150px;
+      }
+    }
+
+    @media(max-width: 1220px) {
+      .popup-overlay {
+        margin-top: 150px;
+        width: 100%;
+        max-width: 90%;
+        left: 5%;
+        margin-left: 0;
+      }
+
+      .zoomer_wrapper {
+        width: 100%;
+      }
+
+      .zoomer .zoomer-controls-top,
+      .zoomer .zoomer-controls-bottom {
+        left: 14%;
+      }
+    }
+
+    @media(max-width: 1024px) {
+      .popup-overlay {
+        margin-top: 150px;
+        width: 100%;
+        max-width: 90%;
+        left: 5%;
+        margin-left: 0;
+      }
+
+      .zoomer_wrapper {
+        width: 100%;
+      }
+
+      .zoomer .zoomer-controls-top,
+      .zoomer .zoomer-controls-bottom {
+        left: 14%;
+      }
+    }
+
+    @media(max-width: 960px) {
+      .portfolio .portfolio-col2 {
+        width: 33%;
+      }
+
+      .popup-overlay {
+        margin-top: 150px;
+        width: 100%;
+        max-width: 90%;
+         left: 5%;
+        margin-left: 0;
+      }
+
+      .zoomer_wrapper {
+        width: 100%;
+        height: auto;
+      }
+
+      .zoomer .zoomer-controls-top,
+      .zoomer .zoomer-controls-bottom {
+        left: 14%;
+      }
+    }
+
+    @media(max-width: 900px) {
+      header {
+        position: fixed;
+        top: 0;
+        z-index: 999999;
+        right: 0;
+        background: #ffffff;
+        width: 100%;
+        box-shadow: 0 2px 5px #f2f2f2;
+      }
+
+      .icon.active .portfolio {
+        margin-top: 200px;
+      }
+
+      .portfolio-nav li.active {
+        border-bottom: 0;
+        background-color: #113685;
+        color: #ffffff !important;
+        font-weight: 300;
+      }
+
+      .icon:before {
+        content: '\f0c9';
+        font-family: fontAwesome;
+        color: #113685;
+      }
+
+      .icon.active:before {
+        content: '\f00d';
+        color: #113685;
+      }
+
+      .icon.active nav {
+        display: flex !important;
+      }
+
+      nav {
+        display: none;
+      }
+
+      nav.active {
+        display: flex;
+        width: 100%;
+      }
+
+      #port-menu .portfolio-nav li {
+        float: none;
+        padding: 10px 20px;
+      }
+
+      nav.active ul {
+        display: block;
+        width: 100%;
+        margin-bottom: 0;
+      }
+
+      .portfolio-nav {
+        padding-top: 0px;
+        padding-left: 0;
+        position: relative;
+        box-shadow: none;
+      }
+
+      .icon {
+        float: right;
+        display: block;
+        color: #000;
+        text-align: right;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+        width: 100%;
+      }
+
+      .portfolio {
+        margin-top: 75px;
+      }
+
+      .comp-name h3 {
+        width: 63% !important;
+        font-size: 14px;
+      }
+
+      .logo2 {
+        margin-left: 14px !important;
+      }
+
+      .title {
+        position: relative;
+        top: 5px;
+      }
+
+      .popup-overlay {
+        width: 100%;
+        max-width: 90%;
+        margin-top: 115px;
+        left: 5%;
+        margin-left: 0;
+      }
+
+      .zoomer_wrapper {
+        width: 100%;
+        height: 350px;
+      }
+
+      .viewer {
+        height: 350px;
+        margin: auto 10px;
+      }
+
+      .popup-right {
+        height: 350px;
+        width: 80%;
+      }
+
+      .zoomer .zoomer-controls-top,
+      .zoomer .zoomer-controls-bottom {
+        left: 17%;
+      }
+    }
+
+    @media(max-width: 768px) {
+      .comp-name h3 {
+        width: 63% !important;
+        font-size: 14px;
+      }
+
+      .logo2 {
+        margin-left: 14px !important;
+      }
+
+      .title {
+        position: relative;
+        top: 5px;
+      }
+
+      .popup-overlay {
+        width: 100%;
+        max-width: 90% ;
+        margin-top: 115px;
+        left: 5%;
+        margin-left: 0;
+      }
+
+      .zoomer_wrapper {
+        width: 100%;
+        height: 350px;
+      }
+
+      .viewer {
+        height: 350px;
+        margin: auto 10px;
+      }
+
+      .popup-right {
+        height: 350px;
+        width: 100%;
+      }
+
+      .zoomer .zoomer-controls-top,
+      .zoomer .zoomer-controls-bottom {
+        left: 17%;
+      }
+    }
+
+    @media(max-width: 680px) {
+      .portfolio .portfolio-col2 {
+        width: 100%;
+      }
+
+      .popup-overlay {
+        position: absolute;
+        left: 5%;
+        margin-left: 0;
+        width: 100%;
+        max-width: 90%
+      }
+
+      .popup-content {
+        width: 100%;
+      }
+
+      .zoomer_wrapper {
+        width: 100%;
+        height: 350px;
+        display: contents;
+      }
+
+      .viewer {
+        width: 100%;
+        margin: auto;
+        height: 350px;
+      }
+
+      .zoomer {
+        height: 100%;
+        width: 100%;
+        display: block;
+      }
+
+      .popup-right {
+        width: 100%;
+        height: auto;
+      }
+
+      .comp-name .logo {
+        margin: auto;
+        width: 28%;
+        text-align: left;
+      }
+
+      .zoomer .zoomer-controls {
+        position: absolute;
+        left: 20% !important;
+      }
+
+      .comp-name h3 {
+        width: 56%;
+        font-size: 14px;
+        top: 5px;
+        margin: auto;
+      }
+
+      .comp-name {
+        width: 100%;
+        margin: 9px 0 0;
+        border-bottom: #e1e1e1 solid 1px;
+        padding-bottom: 10px;
+        display: flex;
+      }
+
+      .logo2 {
+        margin-left: 20px !important;
+        width: 25%;
+        text-align: left;
+      }
+
+      .website a {
+        width: 145px;
+        font-size: 10px;
+      }
+
+      .website a::after {
+        left: 61px;
+      }
+
+      .comp-name img {
+        width: 35%;
+      }
+
+      .comp-name h4 {
+        width: 40%;
+      }
+    }
+
+    @media(max-width: 475px) {
+      .portfolio .portfolio-col2 {
+        width: 100%;
+      }
+
+      .popup-overlay {
+        position: absolute;
+        left: 5%;
+        margin-left: 0;
+        width: 100%;
+        max-width: 90%;
+      }
+
+      .zoomer_wrapper {
+        width: 100%;
+        height: 350px;
+        display: contents;
+      }
+
+      .viewer {
+        width: 100%;
+        margin: auto;
+        height: 350px;
+      }
+
+      .zoomer {
+        height: 100%;
+        width: 100%;
+        display: block;
+      }
+
+      .popup-right {
+        width: 100%;
+        height: auto;
+      }
+
+      .comp-name .logo {
+        margin-left: 10px;
+        width: 25%;
+      }
+
+      .zoomer .zoomer-controls {
+        position: absolute;
+        left: 22% !important;
+      }
+
+      .comp-name h3 {
+        width: 56%;
+        font-size: 14px;
+        top: 5px;
+      }
+
+      .logo2 {
+        margin-left: 20px !important;
+        width: 25%;
+        text-align: left;
+      }
+
+      .website {
+        margin: 35px 0 0;
+      }
+
+      .website a {
+        width: 145px;
+        font-size: 10px;
+      }
+
+      .website a::after {
+        left: 61px;
+      }
+
+      .comp-name img {
+        width: 50%;
+      }
+    }
+
+    /*@media(max-width: 425px){
+    .popup-overlay{
+      left: 5%;
+    }
+  }
+  @media(max-width: 375px){
+    .popup-overlay{
+      left: 5%;
+    }
+  }
+  @media(max-width: 320px){
+    .popup-overlay{
+      left: 5%;
+    }
+  }*/
+    /*img.lazy {
+      width: 700px; 
+      height: 467px; 
+      display: block;
+  }*/
+    a.info_link {
+      /*display: none;*/
+    }
+  </style>
+</head>
+
+<body>
+  <script src="http://portfolio-beta.themezones.com/public/assets/js/jquery.fs.zoomer.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+
+      $(".viewer").zoomer();
+    });
+    $(document).ready(function () {
+      $('.icon').click(function () {
+        $('.icon').toggleClass('active')
+        $('nav').toggleClass('active')
+      });
+    });
+    $(document).ready(function () {
+      $('#tab-wordpress').addClass('active');
+      $('.tabs li').click(function () {
+        var id = $(this).attr('data-id');
+        $('.tabs li').removeClass('active');
+        $('#tab_container div').removeClass('active');
+        $('#tab-' + id).addClass('active');
+        $(this).addClass('active');
+      });
+
+      var pixelToMove = 50;
+      $("#secu").mousemove(function (e) {
+        var width = $(this).innerWidth();
+        var height = $(this).innerHeight();
+        var newValueX = (e.pageX / width) * pixelToMove;
+        var newValueY = (e.pageY / height) * pixelToMove;
+        $(this).css('background-position', newValueX + '%' + ' ' + newValueY + '%');
+      });
+
+      $('.portfolio-col2').click(function () {
+        $(".popup-overlay, .popup-content").addClass('active');
+        $(".overlay2").addClass('active');
+        var src = $(this).find('img').attr('src');
+        var filenamesrc = src.replace(/^.*?([^\/]+)\..+?$/, '$1');
+        $(".viewer .zoomer-image").attr('src', "./img/output/" + filenamesrc + '.jpg');
+
+        var filename = src.replace(/^.*?([^\/]+)\..+?$/, '$1');
+        $("#content_1 .logo img").attr('src', "./img/thumbnail/thumbnail-" + filename + '.png');
+
+        var href = $(this).attr('data-href');
+        $(".info_link").attr('href', href);
+
+        var name = $(this).find('img').attr('alt');
+        $("#content_1 h3.title").text(name);
+
+        // $(".popup-overlay").zoomer("clear");
+      });
+      $('.close').click(function () {
+        $(".popup-overlay, .popup-content").removeClass('active');
+        $(".overlay2").removeClass('active');
+        // $(".viewer").zoomer("destroy");
+      });
+
+    });
+    $(function () {
+      $('.lazy').lazy();
+    });
+  </script>
+  <div class="popup-overlay">
+    <div class="popup-content">
+      <div class="zoomer_wrapper">
+        <div class="zoomer">
+          <div class="viewer"><img class="lazy" src="./img/output/01.jpg" style="height: auto;margin: auto;" /></div>
+
+          <div class="popup-right" id="content_1">
+            <div class="comp-name">
+              <div class="logo"><img src="./img/thumbnail/thumbnail-01.png" /></div>
+
+              <h3 class="title">Consult Paragon</h3>
+            </div>
+
+            <div class="comp-name">
+              <h4>Tags</h4>
+
+              <ul>
+                <li>Web design</li>
+                <li>HTML5</li>
+                <li>CSS3</li>
+                <li>Web Development</li>
+              </ul>
+
+              <div class="clear"></div>
+            </div>
+
+            <div class="comp-name website" style="">
+              <div class="logo2"><img src="./img/monitor-icon.png" /></div>
+
+              <h3>Visit the Website <a class="info_link" href="https://24-7security.co.za" rel="nofollow"
+                  target="_blank">click Here</a></h3>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="close">X</button>
+    </div>
+  </div>
+
+  <div class="topnav" id="port-menu">
+    <header>
+      <div class="icon"></div>
+
+      <nav class="menu-dis">
+        <ul class="portfolio-nav portfolioFilter tabs" id="myTopnav">
+          <li class="active" data-id="wordpress">Wordpress</li>
+          <li data-id="magento">Magento</li>
+          <li data-id="react">ReactJS</li>
+          <li data-id="node">NodeJS</li>
+          <li data-id="vue">VueJs</li>
+          <li data-id="angular">Angular</li>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="portfolio" id="tab_container">
+      <div id="tab-wordpress" style="">
+        <div class="portfolio-col2 thumb-nav" data-href="https://www.callcabinet.com/">
+          <div class="overlay"></div>
+          <img alt="callcabinet" src="./img/portfolio/14.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="http://www.sjoffice.co.za/">
+          <div class="overlay"></div>
+          <img alt="sjoffice" src="./img/portfolio/72.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://www.samint.co.za/">
+          <div class="overlay"></div>
+          <img alt="samint" src="./img/portfolio/68.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://leathermanconsulting.com/">
+          <div class="overlay"></div>
+          <img alt="leatherman consulting" src="./img/portfolio/42.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://drufftest.co.za/malan/">
+          <div class="overlay"></div>
+          <img alt="malan" src="./img/portfolio/44.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://drufftest.co.za/nfimcollege/">
+          <div class="overlay"></div>
+          <img alt="nfim college" src="./img/portfolio/54.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://drufftest.co.za/huntingtons/">
+          <div class="overlay"></div>
+          <img alt="huntingtons" src="./img/portfolio/37.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://drufftest.co.za/stm/">
+          <div class="overlay"></div>
+          <img alt="stm" src="./img/portfolio/76.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://writerswrite.co.za/">
+          <div class="overlay"></div>
+          <img alt="writerswrite" src="./img/portfolio/86.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://www.marulaguys.co.za/">
+          <div class="overlay"></div>
+          <img alt="marulaguys" src="./img/portfolio/48.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://www.insectekpest.com/">
+          <div class="overlay"></div>
+          <img alt="insectekpest" src="./img/portfolio/38.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://www.gep.co.za/">
+          <div class="overlay"></div>
+          <img alt="gep" src="./img/portfolio/32.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="http://www.executrac.co.za/">
+          <div class="overlay"></div>
+          <img alt="executrac" src="./img/portfolio/28.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="http://podevweb.info/vitos/">
+          <div class="overlay"></div>
+          <img alt="vito's coal fired" src="./img/portfolio/60.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://dinozzos.com/">
+          <div class="overlay"></div>
+          <img alt="dinozzos" src="./img/portfolio/23.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://stjosephctr.com/">
+          <div class="overlay"></div>
+          <img alt="st joseph" src="./img/portfolio/75.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="http://www.dutchkitchen.com">
+          <div class="overlay"></div>
+          <img alt="dutch kitchen" src="./img/portfolio/24.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://drufftest.co.za/smb/">
+          <div class="overlay"></div>
+          <img alt="smb" src="./img/portfolio/73.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://azbride.com/">
+          <div class="overlay"></div>
+          <img alt="azbride" src="./img/portfolio/06.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://www.salonindulgencestudio.com/">
+          <div class="overlay"></div>
+          <img alt="salon indulgence" src="./img/portfolio/67.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://simpleafbrands.com/">
+          <div class="overlay"></div>
+          <img alt="simple afbrands" src="./img/portfolio/71.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="http://www.buildittolast.com/">
+          <div class="overlay"></div>
+          <img alt="buildittolast" src="./img/portfolio/11.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://ethnicdistrict.com/">
+          <div class="overlay"></div>
+          <img alt="ethnic district" src="./img/portfolio/27.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="http://www.isquare.co.za/">
+          <div class="overlay"></div>
+          <img alt="isquare" src="./img/portfolio/39.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://www.mojomedia.pro/">
+          <div class="overlay"></div>
+          <img alt="mojo media" src="./img/portfolio/52.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="http://mojoengage.com/">
+          <div class="overlay"></div>
+          <img alt="mojo engage" src="./img/portfolio/51.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://specialeventsrental.com/">
+          <div class="overlay"></div>
+          <img alt="special event srental" src="./img/portfolio/74.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://repairest.com/">
+          <div class="overlay"></div>
+          <img alt="repairest" src="./img/portfolio/66.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="http://modernbusinesstv.com/">
+          <div class="overlay"></div>
+          <img alt="modern business tv" src="./img/portfolio/50.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://lamejortaqueria2.com/">
+          <div class="overlay"></div>
+          <img alt="la mejor taqueria 2" src="./img/portfolio/41.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://www.welbilthomes.net">
+          <div class="overlay"></div>
+          <img alt="welbilthomes" src="./img/portfolio/83.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://sweetpassionsbakery.com/">
+          <div class="overlay"></div>
+          <img alt="sweet passions bakery" src="./img/portfolio/77.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="http://mangatfamilydentistry.com/">
+          <div class="overlay"></div>
+          <img alt="mangat family dentistry" src="./img/portfolio/46.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="http://gillrockdrill.com/">
+          <div class="overlay"></div>
+          <img alt="gill rock drill" src="./img/portfolio/33.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://proaccorp.com/">
+          <div class="overlay"></div>
+          <img alt="proac corp" src="./img/portfolio/62.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://www.harrisbb.com/">
+          <div class="overlay"></div>
+          <img alt="harrisbb" src="./img/portfolio/35.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="http://podevweb.info/electric/">
+          <div class="overlay"></div>
+          <img alt="Jorgensen electric" src="./img/portfolio/61.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://caffreightservices.com/">
+          <div class="overlay"></div>
+          <img alt="caf freight services" src="./img/portfolio/13.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://buttsinyourseats.com/">
+          <div class="overlay"></div>
+          <img alt="butts in your seats" src="./img/portfolio/12.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://thedisciplinedinvestor.com/blog/">
+          <div class="overlay"></div>
+          <img alt="the discipline dinvestor" src="./img/portfolio/78.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="http://envestology.com/">
+          <div class="overlay"></div>
+          <img alt="envestology" src="./img/portfolio/26.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="http://www.huntingforgeorge.com/">
+          <div class="overlay"></div>
+          <img alt="hunting for george" src="./img/portfolio/36.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://www.cortex.la/">
+          <div class="overlay"></div>
+          <img alt="cortex" src="./img/portfolio/18.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://drufftest.co.za/coolgear/">
+          <div class="overlay"></div>
+          <img alt="cool gear" src="./img/portfolio/17.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://www.crownproductsonline.com/">
+          <div class="overlay"></div>
+          <img alt="crownproducts" src="./img/portfolio/20.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="http://www.marketingcode.co.za/">
+          <div class="overlay"></div>
+          <img alt="marketing code" src="./img/portfolio/47.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://bakersfieldcustompools.com/">
+          <div class="overlay"></div>
+          <img alt="Sparks custom pools" src="./img/portfolio/07.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://www.greenleaf-fla.com/">
+          <div class="overlay"></div>
+          <img alt="greenleaf" src="./img/portfolio/34.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://www.westernroofingsystemssanjose.com/">
+          <div class="overlay"></div>
+          <img alt="western roofing system" src="./img/portfolio/85.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://osteopathichealthcareofmaine.com/">
+          <div class="overlay"></div>
+          <img alt="ohm" src="./img/portfolio/57.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://allclearext.com/">
+          <div class="overlay"></div>
+          <img alt="all clearext" src="./img/portfolio/02.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://www.campbelltermitecontrol.com/">
+          <div class="overlay"></div>
+          <img alt="campbell" src="./img/portfolio/15.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://anewyou.com/">
+          <div class="overlay"></div>
+          <img alt="anew you" src="./img/portfolio/03.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://www.thinkfest.co.uk/">
+          <div class="overlay"></div>
+          <img alt="thinkfest" src="./img/portfolio/80.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://24-7security.co.za">
+          <div class="overlay"></div>
+          <img alt="24-7security" src="./img/portfolio/01.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="http://asseenontv.pro/dev/">
+          <div class="overlay"></div>
+          <img alt="as seen on tv" src="./img/portfolio/04.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://www.avanticircuits.com/">
+          <div class="overlay"></div>
+          <img alt="avanti circuits" src="./img/portfolio/05.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://xn--beschlgemarkt-gfb.ch/">
+          <div class="overlay"></div>
+          <img alt="marli ag" src="./img/portfolio/08.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="http://biohelpers.com/">
+          <div class="overlay"></div>
+          <img alt="biohelpers" src="./img/portfolio/09.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="http://www.blythewater.com/">
+          <div class="overlay"></div>
+          <img alt="blythe water" src="./img/portfolio/10.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://www.connect4cancer.org/">
+          <div class="overlay"></div>
+          <img alt="connect4cancer" src="./img/portfolio/16.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://creepycrawlypestcontrol.com">
+          <div class="overlay"></div>
+          <img alt="creepy crawly pest control" src="./img/portfolio/19.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://dekaapwildbedryf.co.za/">
+          <div class="overlay"></div>
+          <img alt="dekaap wild bed" src="./img/portfolio/21.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="http://www.digbywellsdocs.com/PublicDocuments/">
+          <div class="overlay"></div>
+          <img alt="digby wells" src="./img/portfolio/22.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="http://www.eastuniontownship.com/">
+          <div class="overlay"></div>
+          <img alt="east union township" src="./img/portfolio/25.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="http://familyhomemedical.net/">
+          <div class="overlay"></div>
+          <img alt="family home medical" src="./img/portfolio/29.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://fecompare.co.uk/">
+          <div class="overlay"></div>
+          <img alt="fe compare" src="./img/portfolio/30.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="http://www.financialfitnesstraining.co.za/">
+          <div class="overlay"></div>
+          <img alt="financial fitness training" src="./img/portfolio/31.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="http://www.keycourierllc.com/">
+          <div class="overlay"></div>
+          <img alt="key courierllc" src="./img/portfolio/40.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="http://www.londonschooloflawandmanagement.co.uk/">
+          <div class="overlay"></div>
+          <img alt="london school of law and management" src="./img/portfolio/43.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://drufftest.co.za/malkerns/">
+          <div class="overlay"></div>
+          <img alt="malkerns" src="./img/portfolio/45.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://missbish.com/">
+          <div class="overlay"></div>
+          <img alt="missbish" src="./img/portfolio/49.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://www.naturesownchimneycleaning.com/">
+          <div class="overlay"></div>
+          <img alt="chimney cleaning" src="./img/portfolio/53.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://www.northfultonexterminating.com/">
+          <div class="overlay"></div>
+          <img alt="north fulton pest solutions" src="./img/portfolio/55.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://openbrm.io/">
+          <div class="overlay"></div>
+          <img alt="open brm" src="./img/portfolio/56.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://peacefrognatural.com/">
+          <div class="overlay"></div>
+          <img alt="peace frog natural" src="./img/portfolio/58.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://phoenixpestpros.com/">
+          <div class="overlay"></div>
+          <img alt="phoenix pest pros" src="./img/portfolio/59.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://www.propacificpestcontrol.com/">
+          <div class="overlay"></div>
+          <img alt="pro pacific pest control" src="./img/portfolio/63.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://rdpest.com/">
+          <div class="overlay"></div>
+          <img alt="rdpest" src="./img/portfolio/64.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="http://www.reliablehomesupply.com/">
+          <div class="overlay"></div>
+          <img alt="reliable homesupply" src="./img/portfolio/65.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://www.selectafrica.net/">
+          <div class="overlay"></div>
+          <img alt="select africa" src="./img/portfolio/69.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://www.shure-line.com">
+          <div class="overlay"></div>
+          <img alt="shure-line" src="./img/portfolio/70.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://www.thegreenexperts.com/">
+          <div class="overlay"></div>
+          <img alt="the green experts" src="./img/portfolio/79.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://www.trauma-scene.com/">
+          <div class="overlay"></div>
+          <img alt="trauma-scene" src="./img/portfolio/81.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="http://troutmancontracting.com/">
+          <div class="overlay"></div>
+          <img alt="troutmancontracting" src="./img/portfolio/82.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://www.wernerlumber.com">
+          <div class="overlay"></div>
+          <img alt="werner lumber" src="./img/portfolio/84.jpg" />
+        </div>
+      </div>
+
+      <div id="tab-magento" style="">
+        <div class="portfolio-col2 thumb-nav" data-href="https://adaruniforms.com/">
+          <div class="overlay"></div>
+          <img alt="adaruniforms" src="./img/portfolio/adar.jpg" />
+        </div>
+        <div class="portfolio-col2 thumb-nav" data-href="http://test2.mifitness.co.za/">
+          <div class="overlay"></div>
+          <img alt="mifitness" src="./img/portfolio/mifitness.jpg" />
+        </div>
+        <div class="portfolio-col2 thumb-nav" data-href="https://gracewoodrow.com/">
+          <div class="overlay"></div>
+          <img alt="grace woodrow" src="./img/portfolio/m07.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://www.the-cover-store.com/">
+          <div class="overlay"></div>
+          <img alt="The-cover-store" src="./img/portfolio/m14.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://www.leatherology.com/">
+          <div class="overlay"></div>
+          <img alt="leatherology" src="./img/portfolio/m09.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="http://foodmart.sg/">
+          <div class="overlay"></div>
+          <img alt="food mart" src="./img/portfolio/m03.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://milawholesale.com/">
+          <div class="overlay"></div>
+          <img alt="milawholesale" src="./img/portfolio/m12.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://www.mercadomayorista.com/">
+          <div class="overlay"></div>
+          <img alt="mercadomayorista" src="./img/portfolio/m11.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://www.garmentprinterink.com/shop/">
+          <div class="overlay"></div>
+          <img alt="garmentprinterink" src="./img/portfolio/m05.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://www.madaboutscience.com.au/shop/">
+          <div class="overlay"></div>
+          <img alt="mada bout science" src="./img/portfolio/m10.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://www.garnius.no/">
+          <div class="overlay"></div>
+          <img alt="garnius" src="./img/portfolio/m06.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="http://abcdance.com/">
+          <div class="overlay"></div>
+          <img alt="abc dance" src="./img/portfolio/m01.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://www.annesax.dk/">
+          <div class="overlay"></div>
+          <img alt="anne sax" src="./img/portfolio/m02.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://gaitline.com/no/">
+          <div class="overlay"></div>
+          <img alt="gaitline" src="./img/portfolio/m04.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://www.helsesokk.no/">
+          <div class="overlay"></div>
+          <img alt="helsesokk" src="./img/portfolio/m08.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://sommerbutikken.no/">
+          <div class="overlay"></div>
+          <img alt="sommerbutikken" src="./img/portfolio/m13.jpg" />
+        </div>
+      </div>
+
+      <div id="tab-react" style="">
+        <div class="portfolio-col2 thumb-nav" data-href="https://www.amolatina.com">
+          <div class="overlay"></div>
+          <img alt="amolatina" src="./img/portfolio/r01.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://chaldal.com/">
+          <div class="overlay"></div>
+          <img alt="chaldal" src="./img/portfolio/r02.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://ditto.com">
+          <div class="overlay"></div>
+          <img alt="ditto" src="./img/portfolio/r03.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://www.dollarshaveclub.com/">
+          <div class="overlay"></div>
+          <img alt="dollar shave club" src="./img/portfolio/r04.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://joshflagg.com/">
+          <div class="overlay"></div>
+          <img alt="josh flagg" src="./img/portfolio/r05.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://mentorly.co/">
+          <div class="overlay"></div>
+          <img alt="mentorly" src="./img/portfolio/r06.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://www.moneylion.com/">
+          <div class="overlay"></div>
+          <img alt="money lion" src="./img/portfolio/r07.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://www.pomwonderful.com/">
+          <div class="overlay"></div>
+          <img alt="pom wonderful" src="./img/portfolio/r08.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://www.shopback.sg/">
+          <div class="overlay"></div>
+          <img alt="shopback" src="./img/portfolio/r09.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://www.studiotime.io/">
+          <div class="overlay"></div>
+          <img alt="studio time" src="./img/portfolio/r10.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://www.teacherspayteachers.com/">
+          <div class="overlay"></div>
+          <img alt="teachers pay teachers" src="./img/portfolio/r11.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://www.theknot.com">
+          <div class="overlay"></div>
+          <img alt="the knot" src="./img/portfolio/r12.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://therake.com">
+          <div class="overlay"></div>
+          <img alt="the rake" src="./img/portfolio/r13.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://www.treatwell.co.uk/">
+          <div class="overlay"></div>
+          <img alt="treat well" src="./img/portfolio/r14.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://ueno.co/">
+          <div class="overlay"></div>
+          <img alt="ueno" src="./img/portfolio/r15.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="http://www.welikestartup.com/">
+          <div class="overlay"></div>
+          <img alt="we like startup" src="./img/portfolio/r16.jpg" />
+        </div>
+      </div>
+
+      <div id="tab-node" style="">
+        <div class="portfolio-col2 thumb-nav" data-href="https://www.oranum.com">
+          <div class="overlay"></div>
+          <img alt="oranum" src="./img/portfolio/n02.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://sumall.com/">
+          <div class="overlay"></div>
+          <img alt="sumall" src="./img/portfolio/n03.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://www.yuefloat.com/">
+          <div class="overlay"></div>
+          <img alt="yuefloat" src="./img/portfolio/n04.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://www.zocdoc.com/">
+          <div class="overlay"></div>
+          <img alt="zocdoc" src="./img/portfolio/n05.jpg" />
+        </div>
+      </div>
+
+      <div id="tab-vue" style="">
+        <div class="portfolio-col2 thumb-nav" data-href="https://www.autobidmaster.com/en/">
+          <div class="overlay"></div>
+          <img alt="auto bid master" src="./img/portfolio/v01.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://www.gogetgold.com">
+          <div class="overlay"></div>
+          <img alt="kohinur" src="./img/portfolio/v02.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://melostock.hu">
+          <div class="overlay"></div>
+          <img alt="melostock" src="./img/portfolio/v03.jpg" />
+        </div>
+      </div>
+
+      <div id="tab-angular" style="">
+        <div class="portfolio-col2 thumb-nav" data-href="https://www.bonfire.com">
+          <div class="overlay"></div>
+          <img alt="bonfire" src="./img/portfolio/a01.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://www.hotwire.com/">
+          <div class="overlay"></div>
+          <img alt="hotwire" src="./img/portfolio/a02.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://www.onemodelplace.com/">
+          <div class="overlay"></div>
+          <img alt="one model place" src="./img/portfolio/a03.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://www.ratehub.ca/">
+          <div class="overlay"></div>
+          <img alt="ratehub" src="./img/portfolio/a04.jpg" />
+        </div>
+
+        <div class="portfolio-col2 thumb-nav" data-href="https://rentberry.com/">
+          <div class="overlay"></div>
+          <img alt="rentberry" src="./img/portfolio/a05.jpg" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="overlay2"></div>
+</body>
+<script type="text/javascript" src="https://www.tisindia.com/zoomer/ie/jquery.fs.zoetrope.min.js"></script>
+
+</html>
